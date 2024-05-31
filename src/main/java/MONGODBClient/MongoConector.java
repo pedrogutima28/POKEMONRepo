@@ -118,7 +118,11 @@ public static void eliminarPokemon(){
                 Document newPokemon = new Document("name", "Bulbasur")
                  					.append("type","planta")
                  					.append("level", "26");
+                
+                Document newSaldo = new Document("Saldo", 100);
 
+                collection.insertOne(newSaldo);
+                System.out.println("Cargando saldo...");
                  							
                  collection.insertOne(newPokemon);
                  System.out.println("Pokemon prueba insertado");
@@ -144,6 +148,7 @@ public static void eliminarPokemon(){
 
 	public static Document mostrarInfo(String nombrePokemon) {
 		
+		Document foundSaldo = null;
 		Document foundPokemon = null;
 		 try (MongoClient mongoClient = MongoClients.create(settings)) {
 	            try {
@@ -166,5 +171,6 @@ public static void eliminarPokemon(){
 	            
 	        }
 		return foundPokemon;
+		
 	}
 }
